@@ -1,17 +1,23 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <body>
-        <?php
-        // put your code here
-        ?>
-    </body>
-</html>
+<?php
+
+include_once 'Request.php';
+include_once 'Router.php';
+$router = new Router(new Request);
+
+$router->get('/', function() {
+  return <<<HTML
+  <h1>Hello world</h1>
+HTML;
+});
+
+
+$router->get('/profile', function($request) {
+  return <<<HTML
+  <h1>Profile</h1>
+HTML;
+});
+
+$router->post('/data', function($request) {
+
+  return json_encode($request->getBody());
+});
